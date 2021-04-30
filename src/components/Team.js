@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Player from './Player';
 
-function Team({ team, voted, setVoted }) {
+function Team({ team, voted, vote, input }) {
 
     const [show, setShow] = useState(false);
 
@@ -13,8 +13,9 @@ function Team({ team, voted, setVoted }) {
             <button onClick={ () => setShow(!show) }>
                 { show ? 'Show less' : 'Show more' }
             </button>
-            { show && team.franchisePlayers.map((player, i) => 
-            <Player key={ i } player={ player } voted={ voted } setVoted={ setVoted } />) }
+            { show && team.franchisePlayers.filter(player => player.name.includes(input))
+            .map((player, i) => 
+            <Player key={ i } player={ player } voted={ voted } vote={ vote } />) }
         </div>
     );
 }

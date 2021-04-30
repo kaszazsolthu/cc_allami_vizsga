@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 
-function Player({ player, voted, setVoted }) {
+function Player({ player, voted, vote }) {
 
     //const [show, setShow] = useState(false);
 
     return(
-        <p>{player.name} - <button onClick={ () => vote() }>
-            { !voted ? 'Vote'
-                : voted === '...' ? voted : 'Voted'
-            }    
-            </button>
+        <p>{ player.name } - { voted === false 
+            ? <button onClick={ () => vote(player.id) }>Vote</button>
+            : voted === '...' ? voted : 'Voted'
+            }
         </p>
     );
 }
